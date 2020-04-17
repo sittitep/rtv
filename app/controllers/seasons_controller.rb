@@ -2,7 +2,9 @@
 
 class SeasonsController < ApplicationController
   def index
-    seasons = Season.order('created_at ASC').all
+    seasons = Rails.cache.fetch('seasons_index', expires_in: 12.hours) do
+      Season.order('created_at ASC').all
+    end
 
     render json: SeasonSerializer.new(seasons).serialized_json
   end

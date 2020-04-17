@@ -2,7 +2,9 @@
 
 class ContentsController < ApplicationController
   def index
-    contents = Content.order('created_at ASC').all
+    contents = Rails.cache.fetch('contents_index', expires_in: 12.hours) do
+      Content.order('created_at ASC').all
+    end
 
     render json: ContentSerializer.new(contents).serialized_json
   end
