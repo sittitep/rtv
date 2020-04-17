@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :purchase do
     expired_at { Time.zone.now + 2.days }
-    
+
     association :user, factory: :user
-    
+
     trait :expired do
       expired_at { Time.zone.now - 2.days }
     end
@@ -14,10 +16,10 @@ FactoryBot.define do
       end
 
       after(:create) do |object, evaluator|
-        evaluator.purchase_items_count.times do |index|
+        evaluator.purchase_items_count.times do |_index|
           create(:purchase_item, purchase: object)
         end
       end
-    end    
+    end
   end
 end

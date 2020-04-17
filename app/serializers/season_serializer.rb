@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SeasonSerializer
   include FastJsonapi::ObjectSerializer
 
@@ -6,6 +8,6 @@ class SeasonSerializer
   attributes :title, :plot, :number
 
   attribute :episodes do |object|
-    EpisodeSerializer.new(object.episodes.order("number ASC")).as_json
+    EpisodeSerializer.new(object.episodes.order('number ASC')).as_json
   end
 end

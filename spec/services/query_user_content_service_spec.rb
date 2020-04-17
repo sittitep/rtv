@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "QueryUserContentService" do
-  describe "call" do
+RSpec.describe 'QueryUserContentService' do
+  describe 'call' do
     it "returns user's contents" do
       user_1 = create(:user)
       user_2 = create(:user)
@@ -17,8 +19,8 @@ RSpec.describe "QueryUserContentService" do
       expect(contents.size).to eq(1)
     end
 
-    context "when content is expired" do
-      it "excludes them" do
+    context 'when content is expired' do
+      it 'excludes them' do
         user = create(:user)
 
         purchase_1 = create(:purchase, :with_purchase_items, purchase_items_count: 1, user: user)

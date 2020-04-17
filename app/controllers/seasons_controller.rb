@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class SeasonsController < ApplicationController
   def index
-    seasons = Season.order("created_at ASC").all
+    seasons = Season.order('created_at ASC').all
 
     render json: SeasonSerializer.new(seasons).serialized_json
   end

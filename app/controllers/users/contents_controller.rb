@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Users::ContentsController < ApplicationController
   def index
     contents = QueryUserContentService.call(user_id: params[:user_id])

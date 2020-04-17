@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :season do
     title { Faker::Movie.quote }
@@ -5,7 +7,6 @@ FactoryBot.define do
     number { 1 }
 
     trait :with_episodes do
-
       transient do
         episodes_count { 3 }
       end

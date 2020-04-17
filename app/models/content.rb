@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Content < ApplicationRecord
   belongs_to :resource, polymorphic: true
   has_many :purchase_options

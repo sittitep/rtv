@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreatePurchaseService
   def self.call(args)
     new.call(args)
@@ -5,10 +7,12 @@ class CreatePurchaseService
 
   def call(user_id:, purchase_option_id:)
     user = User.find(user_id)
-    purchase_option = PurchaseOption.find(purchase_option_id)    
+    purchase_option = PurchaseOption.find(purchase_option_id)
     user_contents = QueryUserContentService.call(user_id: user.id)
 
-    raise PrevPurchaseIsNotExpired if user_contents.pluck(:id).include?(purchase_option.content.id)
+    if user_contents.pluck(:id).include?(purchase_option.content.id)
+      raise PrevPurchaseIsNotExpired
+    end
 
     purchase = Purchase.new(user_id: user_id, expired_at: 2.days.from_now)
     purchase.purchase_items.new(purchase_option_id: purchase_option_id)
@@ -17,4 +21,4 @@ class CreatePurchaseService
   end
 end
 
-class PrevPurchaseIsNotExpired < StandardError; end;
+class PrevPurchaseIsNotExpired < StandardError; end

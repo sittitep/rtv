@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PurchasesController < ApplicationController
   def create
     purchase = CreatePurchaseService.call(
@@ -8,9 +10,9 @@ class PurchasesController < ApplicationController
     render json: PurchaseSerializer.new(purchase).serialized_json
   end
 
-private
+  private
 
   def purchase_params
-    params.permit([:user_id, :purchase_option_id])
+    params.permit(%i[user_id purchase_option_id])
   end
 end
