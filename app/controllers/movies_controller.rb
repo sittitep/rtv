@@ -1,5 +1,7 @@
 class MoviesController < ApplicationController
   def index
-    render json: {}
+    movies = Movie.order("created_at ASC").all
+
+    render json:  MovieSerializer.new(movies).serialized_json
   end
 end
