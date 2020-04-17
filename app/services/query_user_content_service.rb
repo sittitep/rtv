@@ -7,7 +7,8 @@ class QueryUserContentService
     Content
       .joins(purchase_options: {purchase_items: :purchase})
       .where(purchases: {user_id: user_id})
-      .select("*, purchases.expired_at AS purchase_expired_at")
+      .where("purchases.expired_at > ?", Time.zone.now)
       .order("purchases.expired_at ASC")
+      .select("contents.*, purchases.expired_at AS purchase_expired_at")
   end
 end

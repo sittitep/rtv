@@ -4,6 +4,10 @@ FactoryBot.define do
     
     association :user, factory: :user
     
+    trait :expired do
+      expired_at { Time.zone.now - 2.days }
+    end
+
     trait :with_purchase_items do
       transient do
         purchase_items_count { 1 }
