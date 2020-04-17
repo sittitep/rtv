@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_17_192414) do
+ActiveRecord::Schema.define(version: 2020_04_17_193127) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,14 @@ ActiveRecord::Schema.define(version: 2020_04_17_192414) do
     t.index ["content_id"], name: "index_purchase_options_on_content_id"
   end
 
+  create_table "purchases", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "expired_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_purchases_on_user_id"
+  end
+
   create_table "seasons", force: :cascade do |t|
     t.string "title"
     t.string "plot"
@@ -65,4 +73,5 @@ ActiveRecord::Schema.define(version: 2020_04_17_192414) do
 
   add_foreign_key "episodes", "seasons"
   add_foreign_key "purchase_options", "contents"
+  add_foreign_key "purchases", "users"
 end
