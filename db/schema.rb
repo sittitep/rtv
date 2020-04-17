@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_17_175532) do
+ActiveRecord::Schema.define(version: 2020_04_17_184134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "contents", force: :cascade do |t|
+    t.string "resource_type", null: false
+    t.bigint "resource_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["resource_type", "resource_id"], name: "index_contents_on_resource_type_and_resource_id"
+  end
 
   create_table "episodes", force: :cascade do |t|
     t.string "title"

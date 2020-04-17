@@ -16,5 +16,9 @@ FactoryBot.define do
         end
       end
     end
+
+    after(:create) do |season|
+      create(:content, resource: season)
+    end
   end
 end
