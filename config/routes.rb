@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :contents, only: [:index]
   resources :purchases, only: [:create]
 
-  namespace :users do
+  resources :users, only: [] do
     resources :contents, only: [:index]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
