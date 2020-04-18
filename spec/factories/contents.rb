@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :content do
-    resource { nil }
+    association :resource, factory: :movie
   end
 end

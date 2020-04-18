@@ -18,8 +18,10 @@ FactoryBot.define do
       end
     end
 
-    after(:create) do |season|
-      create(:content, resource: season)
+    trait :with_content do
+      after(:create) do |season|
+        create(:content, resource: season)
+      end
     end
   end
 end

@@ -5,8 +5,8 @@ require 'rails_helper'
 RSpec.describe 'Contents', type: :request do
   describe 'GET index' do
     it 'return contents' do
-      create(:movie)
-      create(:season)
+      create(:movie, :with_content)
+      create(:season, :with_content)
 
       get '/contents'
 

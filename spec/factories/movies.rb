@@ -5,8 +5,10 @@ FactoryBot.define do
     title { Faker::Movie.quote }
     plot { Faker::Lorem.paragraph_by_chars }
 
-    after(:create) do |movie|
-      create(:content, resource: movie)
+    trait :with_content do
+      after(:create) do |movie|
+        create(:content, resource: movie)
+      end
     end
   end
 end

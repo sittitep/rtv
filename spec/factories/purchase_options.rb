@@ -5,8 +5,6 @@ FactoryBot.define do
     price { [299, 399, 499].sample }
     video_quality { %w[HD SD].sample }
 
-    content do
-      create(:movie).content
-    end
+    association :content, factory: :content
   end
 end
