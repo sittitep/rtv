@@ -1,24 +1,17 @@
-# README
+# Available APIs
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+GET /movies
+```
+```
+GET /seasons
+```
+```
+GET /contents
+```
+```
+GET /users/:user_id/contents
+```
+```
+POST /purchases?user_id=integer&purchase_option_id=integer 
+```
